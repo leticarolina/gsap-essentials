@@ -16,23 +16,24 @@
 //durantion - in secons how long will the animation last
 //opacity: 0 ,if from will start at opacity 0 and go to 100% no opacity , if "to" will start with no opacity and fade in to 0
 //stagger will take a time (in seconds) and create a delay to each element inside the .links class (if multiple targets are provided)
-
+//Autoalpha - autoAlpha is basically a combination of 2 CSS properties (opacity and visibility). autoAlpha: 0 is same as opacity: 0 and visibility: hidden in CSS, while autoAlpha: 1 in GSAP is same as opacity: 1 and visibility: visible in CSS.
 //GSAP works on other things rather than only HTML elements
 
 //javascript
-const object = { x: 0 };
-// onUpdate gets called everytime the page update
-gsap.to(object, {
-  x: 100,
-  duration: 3,
-  onUpdate: () => {
-    console.log(object.x); //will log every x distance until get it to 100
-  },
-});
+// const object = { x: 0 };
+// // onUpdate gets called everytime the page update
+// gsap.to(object, {
+//   x: 100,
+//   duration: 3,
+//   onUpdate: () => {
+//     console.log(object.x); //will log every x distance until get it to 100
+//   },
+// });
 
 //svg
 
-//CODE FOR THE ANIMATION PROJECT
+//-----------------------CODE FOR HERO PAGE ANIMATION--------------//
+//-----------------------CODE FOR HERO PAGE ANIMATION--------------//
 
 //animating from the current css style state to animation state
 //y: the starting vertical position -100% to start from the very top of the header class
@@ -54,19 +55,39 @@ gsap.to(object, {
 //.timeline combine together different animations that occurs on a sequence one after another
 //use case: if you change duration of first animation all the others will be adequaly staggered
 //timeline is always everything one after another, thats why .link will render only after .header is done
-const timeline = gsap.timeline({ defaults: { duration: 1 } });
+// const timeline = gsap.timeline({ defaults: { duration: 1 } });
 
-timeline
-  .from(".header", { y: "-100%", ease: "bounce" })
-  .from(".link", { stagger: 0.2, opacity: 0 })
-  .from(".right", { duration: 2, x: "-100vh", ease: "power1.out" }, 1) //1 is the delay in seconds to start running (absolute delay )
-  .from(".left", { duration: 2, x: "100vh", ease: "power1.out" }, "<") //"<" referring the delay to when the previous animation starts so they start together, can also add time on top "< .5 " (run after half second prev anition started)
-  .fromTo(".footer", { y: "100vh" }, { duration: 2, y: "0" }, 1)
-  .fromTo(".button", { scale: 0, rotation: 720 }, { scale: 1, rotation: 0 });
+// timeline
+//   .from(".header", { y: "-100%", ease: "bounce" })
+//   .from(".link", { stagger: 0.2, opacity: 0 })
+//   .from(".right", { duration: 2, x: "-100vh", ease: "power1.out" }, 1) //1 is the delay in seconds to start running (absolute delay )
+//   .from(".left", { duration: 2, x: "100vh", ease: "power1.out" }, "<") //"<" referring the delay to when the previous animation starts so they start together, can also add time on top "< .5 " (run after half second prev anition started)
+//   .fromTo(".footer", { y: "100vh" }, { duration: 2, y: "0" }, 1)
+//   .fromTo(".button", { scale: 0, rotation: 720 }, { scale: 1, rotation: 0 });
 
 //reversing the whole animation using .reverse() this is only possiblie because code was declared using timeline
-const button = document.querySelector(".button");
-button.addEventListener("click", () => {
-  timeline.timeScale(3); // .timeScale(3) will adjust speed of function, in this case 3x faster than the build in time
-  timeline.reverse(); //reversing all animation from tineline
+// const button = document.querySelector(".button");
+// button.addEventListener("click", () => {
+//   timeline.timeScale(3); // .timeScale(3) will adjust speed of function, in this case 3x faster than the build in time
+//   timeline.reverse(); //reversing all animation from tineline
+// });
+
+//-----------------------USING SCROLL TRIGGER ON GSAP--------------//
+//-----------------------USING SCROLL TRIGGER ON GSAP--------------//
+
+//scroll trigger
+gsap.registerPlugin(ScrollTrigger); //to trigger scroll
+//will trigger when scroll get to social-media
+gsap.to(".second-square", {
+  x: 700,
+  duration: 4,
+  ScrollTrigger: ".third-square",
 });
+
+function multiply(a, b) {
+  return function numbers(b) {
+    a * b;
+  };
+}
+
+multiply(5)(6);

@@ -4,10 +4,14 @@ html {
 
 body {
   margin: 0;
-  min-height: 100vh;
+  /* position: relative; */
+  /* overflow: hidden; to hide any animation that start off the page */
+}
+.first-page {
+  height: 100vh;
+  position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* to hide any animation that start off the page */
 }
 .header {
   height: 15vh;
@@ -43,4 +47,28 @@ button {
 .footer {
   background-color: lightcoral;
   height: 15vh;
+}
+
+.second-page {
+  background-color: aquamarine;
+  height: 100vh;
+  /* position: relative; */
+}
+
+.second-square {
+  background-color: azure;
+  height: 200px;
+  width: 200px;
+  /* justify-content: center; */
+}
+.third-square {
+  background-color: blueviolet;
+  height: 200px;
+  width: 200px;
+  margin-top: 200px;
+}
+.third-page {
+  background-color: darksalmon;
+  height: 100vh;
+  /* position: relative; */
 }
